@@ -58,9 +58,9 @@ public class Recipe extends Item {
         System.out.println("\nIngredients:");
         for (Ingredient i : ingredients) {
             System.out.println("  - " + i);
+        }
 
         System.out.println("\nDescription:");
         System.out.println(details.getDescription());
-        }
     }
 }

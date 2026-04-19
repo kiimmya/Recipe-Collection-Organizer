@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.util.List;
 
 public class RecipeGUI extends JFrame {
@@ -26,13 +25,11 @@ public class RecipeGUI extends JFrame {
 
         JScrollPane listScroll = new JScrollPane(recipeList);
         listScroll.setPreferredSize(new Dimension(250, 0));
-
         add(listScroll, BorderLayout.WEST);
 
         // DETAILS
         detailsArea = new JTextArea();
         detailsArea.setEditable(false);
-
         add(new JScrollPane(detailsArea), BorderLayout.CENTER);
 
         // BUTTONS
@@ -50,7 +47,6 @@ public class RecipeGUI extends JFrame {
 
         // EVENTS
 
-        // Select recipe → show details
         recipeList.addListSelectionListener(e -> {
             int index = recipeList.getSelectedIndex();
             if (index >= 0) {
@@ -58,13 +54,8 @@ public class RecipeGUI extends JFrame {
             }
         });
 
-        // Add
         addBtn.addActionListener(e -> addRecipe());
-
-        // Update
         updateBtn.addActionListener(e -> updateRecipe());
-
-        // Delete
         deleteBtn.addActionListener(e -> deleteRecipe());
 
         setVisible(true);
@@ -85,8 +76,11 @@ public class RecipeGUI extends JFrame {
         StringBuilder sb = new StringBuilder();
         sb.append("Name: ").append(r.getName()).append("\n");
         sb.append("Category: ").append(r.getCategory()).append("\n\n");
-        sb.append("Ingredients:\n");
 
+        sb.append("Description:\n");
+        sb.append(r.getDetails().getDescription()).append("\n\n");
+
+        sb.append("Ingredients:\n");
         for (Ingredient i : r.getIngredients()) {
             sb.append(" - ").append(i.toString()).append("\n");
         }
@@ -103,6 +97,11 @@ public class RecipeGUI extends JFrame {
         if (category == null || category.trim().isEmpty()) return;
 
         Recipe recipe = new Recipe(name, category);
+
+        String description = JOptionPane.showInputDialog("Enter description:");
+        if (description != null && !description.trim().isEmpty()) {
+            recipe.setDetails(new RecipeDetails(description));
+        }
 
         while (true) {
             String ingName = JOptionPane.showInputDialog("Ingredient (Cancel to stop):");
@@ -126,7 +125,7 @@ public class RecipeGUI extends JFrame {
 
         Recipe r = recipes.get(index);
 
-        String[] options = {"Name", "Category", "Ingredients"};
+        String[] options = {"Name", "Category", "Ingredients", "Description"};
         int choice = JOptionPane.showOptionDialog(null,
                 "What to update?",
                 "Update",
@@ -163,6 +162,17 @@ public class RecipeGUI extends JFrame {
                     r.addIngredient(new Ingredient(ingName, amount));
                 }
                 break;
+
+            case 3:
+                String newDesc = JOptionPane.showInputDialog(
+                        "New description:",
+                        r.getDetails().getDescription()
+                );
+
+                if (newDesc != null && !newDesc.trim().isEmpty()) {
+                    r.setDetails(new RecipeDetails(newDesc));
+                }
+                break;
         }
 
         FileManager.save(recipes);
@@ -191,7 +201,8 @@ public class RecipeGUI extends JFrame {
             detailsArea.setText("");
         }
     }
-    //MAIN
+
+    // MAIN
     public static void main(String[] args) {
         SwingUtilities.invokeLater(RecipeGUI::new);
     }

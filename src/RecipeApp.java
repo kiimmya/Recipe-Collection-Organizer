@@ -81,11 +81,15 @@ public class RecipeApp {
             recipe.addIngredient(new Ingredient(ingName, amount));
         }
 
+        System.out.print("Enter recipe description: ");
+        String description = scanner.nextLine();
+        recipe.setDetails(new RecipeDetails(description));
+
         recipes.add(recipe);
         System.out.println("Recipe added!");
     }
 
-    // UPDATED
+    // VIEW
     private static void viewRecipes() {
         if (recipes.isEmpty()) {
             System.out.println("No recipes found.");
@@ -146,6 +150,7 @@ public class RecipeApp {
         System.out.println("1. Name");
         System.out.println("2. Category");
         System.out.println("3. Ingredients");
+        System.out.println("4. Description");
         System.out.print("Choose: ");
 
         String choice = scanner.nextLine();
@@ -155,10 +160,12 @@ public class RecipeApp {
                 System.out.print("New name: ");
                 r.setName(scanner.nextLine());
                 break;
+
             case "2":
                 System.out.print("New category: ");
                 r.setCategory(scanner.nextLine());
                 break;
+
             case "3":
                 r.clearIngredients();
                 while (true) {
@@ -172,6 +179,13 @@ public class RecipeApp {
                     r.addIngredient(new Ingredient(name, amount));
                 }
                 break;
+
+            case "4":
+                System.out.print("New description: ");
+                String newDesc = scanner.nextLine();
+                r.setDetails(new RecipeDetails(newDesc));
+                break;
+
             default:
                 System.out.println("Invalid choice!");
         }

@@ -1,89 +1,79 @@
-Recipe Collection Organizer by Kim Diana COMFCI-25
+### Recipe Collection Organizer by Kim Diana COMFCI-25
 
-Project Description
+### Project Description
+The Recipe Collection Organizer is a Java-based application designed to manage cooking recipes in a structured and user-friendly manner. The system enables users to add, view, update, and delete recipes. Each recipe contains a name, category, detailed cooking description, and a list of ingredients with associated quantities.
 
-This project is a Recipe Collection Organizer helps users store and manage their recipes in a simple and organized way.
-With this program, users can:
-- Add new recipes – enter name, category, description, and ingredients
-- View all recipes – see a list or open a recipe to read full details
-- Update a recipe – change the name, category, ingredients, or cooking steps
-- Delete a recipe – remove it when it is no longer needed
+The application provides both a Command Line Interface (CLI) and a Graphical User Interface (GUI) built with Java Swing. All recipe data is stored in external files, thereby ensuring persistence across program sessions. The program also incorporates input validation and error handling mechanisms to guarantee stable and reliable execution.
 
-Each recipe contains:
-- Name (e.g., "Spagetti Bolognese", "San Sebastian Cheesecake")
-- Category (e.g., Main Course, Dessert, Soup, Breakfast)
-- Description (the cooking instructions, step by step)
-- List of ingredients (a number (quantity), and a unit (like grams, milliliters, or spoons) of each ingredient)
+This project demonstrates the practical application of fundamental Object-Oriented Programming (OOP) principles, including encapsulation, inheritance, and polymorphism.
 
-The program has two different ways to use it:
-- Command Line Interface (CLI) – users type commands in the terminal.
-- Graphical User Interface (GUI) – users click buttons and see windows (made with Java Swing).
+### Project Objectives
+The principal objective of this project is to develop a fully functional recipe management system while applying core Java programming and OOP concepts.
 
-All recipes are automatically saved to files on your computer.
-This means that when you close the program and open it again later, your recipes are still there. Nothing is lost.
+The specific aims of the project are as follows:
+- Implement complete CRUD (Create, Read, Update, Delete) functionality for recipes.
+- Provide both CLI and GUI interfaces for user interaction.
+- Ensure data persistence through file storage.
+- Apply OOP principles (encapsulation, inheritance, polymorphism).
+- Validate user input to prevent incorrect or incomplete data entry.
+- Handle runtime errors using appropriate exception handling techniques.
+- Organize the program into modular, reusable classes.
+- Facilitate detailed recipe management, including ingredients and descriptions.
 
-The program also checks what the user types – for example, it will not allow an empty recipe name or a negative amount of flour.
-If something goes wrong (like the save file is missing), the program shows a friendly message instead of crashing.
+### Project Requirements
+The system must satisfy the following requirements:
+1. Implement CRUD operations for recipe management.
+2. Provide a Command Line Interface (CLI) with menu-based navigation.
+3. Provide a Graphical User Interface (GUI) using Java Swing.
+4. Store recipe data including name, category, description, and ingredients.
+5. Allow users to add and manage multiple ingredients per recipe.
+6. Enable selective updates (name, category, ingredients, description).
+7. Save all data to files to ensure persistence across sessions.
+8. Validate user input (e.g., reject empty fields or invalid values).
+9. Implement error handling using try-catch constructs.
+10. Apply Object-Oriented Programming principles (encapsulation, inheritance, polymorphism).
+11. Display recipes in a structured format (summary view plus detailed view).
+12. Use one‑based indexing to facilitate user‑friendly navigation.
 
-This project uses:
-- Classes and objects – each recipe and ingredient is an object
-- Encapsulation – data is kept safe inside objects
-- Inheritance – a child class can reuse code from a parent class
-- Polymorphism – the same method can work differently for different types of objects
-  
+### Documentation
 
-Project Objectives
+### Data Structures
 
-The main goal of this project is to build a useful recipe organizer while practicing Java programming and OOP concepts.
-Here are the specific objectives.
+1. The project employs the following data structures:
+- ArrayList<Recipe> – to store all recipes dynamically.
+- ArrayList<Ingredient> – within each recipe to store its ingredients.
+These structures provide flexible resizing and simplified management of collections.
 
-1. Implement CRUD operations:
-- Create: add a new recipe with all its details
-- Read: view one recipe or list all recipes
-- Update: change the name, category, ingredients, or description of an existing recipe
-- Delete: remove a recipe permanently
+2. Main Classes and Modules:
+- Recipe – stores recipe data (name, category, description, ingredients).
+- RecipeDetails – stores cooking instructions separately.
+- Ingredient – represents a single ingredient with name and amount.
+- RecipeApp (CLI) – handles console‑based user interaction.
+- RecipeGUI – provides the graphical interface using Java Swing.
+- FileManager – manages saving to and loading from files.
 
-2. Provide two user interfaces:
-- Command Line Interface (CLI) – for users who prefer typing commands
-- Graphical User Interface (GUI) using Java Swing – for users who prefer clicking buttons and menus
+3. Additional Module - Item (Base Class):
+- Item – a parent/base class that stores common properties such as name.
+- It is extended by the Recipe class to demonstrate inheritance.
+- This class helps reduce code duplication and supports reusable structure.
 
-3. Save data between sessions:
-- Use file storage (serialization or text files) so recipes are not lost after closing the program
-- Automatically load saved recipes when the program starts
+4. Key Functions:
+- addRecipe() – creates a new recipe.
+- viewRecipes() – displays available recipes.
+- updateRecipe() – modifies selected recipe data.
+- deleteRecipe() – removes a recipe.
+- showDetails() – displays full recipe information.
+- save() / load() – handle file persistence.
 
-4. Apply OOP principles correctly:
-- Encapsulation: all fields are private, and access is done through public getters and setters
-- Inheritance: create a base class (e.g., Item) and at least one child class (e.g., Recipe)
-- Polymorphism: override methods from the parent class to provide specific behavior (e.g., getDescription())
+5. Algorithms Used:
+- Linear search for selecting recipes by index.
+- Iteration through ArrayLists for displaying data.
+- Conditional logic for handling menu commands.
+- File serialization (or structured file storage) for saving data.
 
-5. Validate user input:
-- Do not accept empty strings for names or categories
-- Do not accept zero or negative numbers for ingredient quantities
-- Show clear error messages and ask the user to try again
+6. Challenges Faced: 
+- Managing data synchronisation between the CLI and GUI components.
+- Ensuring correct saving and loading of complex objects to/from files.
+- Handling user input validation consistently across both interfaces.
+- Designing a clean class structure that effectively uses multiple OOP principles.
 
-6. Handle errors gracefully:
-- Catch file reading/writing errors without crashing
-- Handle invalid menu choices or recipe numbers with friendly prompts
-- Use try-catch blocks where necessary
-
-7. Organize code into modules:
-- Separate classes for different responsibilities
-- Recipe – stores recipe data
-- Ingredient – stores ingredient data
-- RecipeManager – handles CRUD and file saving
-- InputValidator – checks user input
-- Main – runs the CLI
-- RecipeGUI – runs the Swing interface
-
-8. Store full recipe details:
-- Recipe name, category, and description
-- Ingredients with name, quantity (as a number), and unit (g, kg, cup, tbsp, etc.)
-- Display ingredients in a clear column format
-
-9. Make the program user-friendly:
-- Clear menus with numbered options
-- Support command abbreviations (e.g., add or just a)
-- Allow uppercase and lowercase commands
-- Use indexes starting from 1 (not 0) so it's easier for users
-
-Overall, the project shows how to build a complete Java application that is both functional and user-friendly.

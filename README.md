@@ -1,7 +1,7 @@
 ### Recipe Collection Organizer by Kim Diana COMFCI-25
 
 ### Project Description
-The Recipe Collection Organizer is a Java-based application designed to manage cooking recipes in a structured and user-friendly manner. The system enables users to add, view, update, and delete recipes. Each recipe contains a name, category, detailed cooking description, and a list of ingredients with associated quantities.
+The Recipe Collection Organizer is aт application designed to manage cooking recipes in a structured and user-friendly manner. The system enables users to add, view, update, and delete recipes. Each recipe contains a name, category, detailed cooking description, and a list of ingredients with associated quantities.
 
 The application provides both a Command Line Interface (CLI) and a Graphical User Interface (GUI) built with Java Swing. All recipe data is stored in external files, thereby ensuring persistence across program sessions. The program also incorporates input validation and error handling mechanisms to guarantee stable and reliable execution.
 
